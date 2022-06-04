@@ -1,243 +1,457 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN" class="loading">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DeckNock</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="DeckNock" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
-    
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="DeckNock"/>
-    
-    
-    
-    
-    
-    <meta property="og:site_name" content="DeckNock"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="DeckNock"/>
-    
-    
-<link rel="stylesheet" href="/css/diaspora.css">
-
-    <script>window.searchDbPath = "/search.xml";</script>
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-<body class="loading">
-    <span id="config-title" style="display:none">DeckNock</span>
-    <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>DeckNock</title>
+        <meta name="author" content="John Doe">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link rel="icon" href="">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">DeckNock</span>
+        </a>
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="//" title="首页" target="_blank" rel="noopener">首页</a>
-        </li>
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/categories/" title="分类" target="_blank" rel="noopener">分类</a>
-        </li>
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/tags/" title="标签" target="_blank" rel="noopener">标签</a>
-        </li>
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/archives/" title="归档" target="_blank" rel="noopener">归档</a>
-        </li>
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/about/" title="关于" target="_blank" rel="noopener">关于</a>
-        </li>
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
         
-    </ul>
-	<span class="target"></span>
-	<center>
-	<div class="hitokoto">
-		<span class="typed" id="hitokoto" data-st="true"></span>
-	</div>
-	</center>
-	
-	<p class="footerlinks">
-		<a href="#" class="iconfont icon-null"></a>
-		
-            <a href="/" title="facebook" class="iconfont icon-facebook" target="_blank" rel="noopener"> </a>
-        
-            <a href="/" title="twitter" class="iconfont icon-twitter" target="_blank" rel="noopener"> </a>
-        
-            <a href="/" title="github" class="iconfont icon-github" target="_blank" rel="noopener"> </a>
-        
-            <a href="/img/logo.png" title="wechat" class="iconfont icon-wechat" target="_blank" rel="noopener"> </a>
-        
-            <a href="mailto:xxxx@gmail.com" title="email" class="iconfont icon-email" target="_blank" rel="noopener"> </a>
-        
-		<a href="#" class="iconfont icon-null"></a>
-	</p>
-	
-    <p id="copyright">
-        &copy; 2022 John Doe.
-        <span> | </span>Powered by <a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        <span> | </span>Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a> by Fechin
-		
-		<span> | </span><a rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">冀ICP备xxxxxxx号</a>
-		
-    </p>
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;DeckNock</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        <div id="home-head">
+    <div id="home-background" style="background-image: url()"></div>
+    
+    <div id="home-info" class="home-info" @click="home_click">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>DeckNock</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+    
 </div>
 
-<div id="container">
-    
-<div id="screen">
-    <div id="mark">
-        <div class="layer" data-depth="0.4">
-            <img src="/img/thumb-1920-1193744(2).jpg" id="cover" crossorigin="anonymous" width="1920" height="1080">
+<div id="home-posts-wrap" class=>
+    <div id="home-posts">
+        <div id="posts">
+            
+
+<div class="post">
+    <a href="/2022/06/04/记录创建主页的过程/">
+        <h2>
+            记录创建主页的过程
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories//">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                /
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/4
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <h1 id="借助Github构建自己的个人网站"><a href="#借助Github构建自己的个人网站" class="headerlink" title="借助Github构建自己的个人网站"></a><center>借助Github构建自己的个人网站</center></h1><h2 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h2><h3 id="建议熟悉如何使用梯子"><a href="#建议熟悉如何使用梯子" class="headerlink" title="建议熟悉如何使用梯子"></a>建议熟悉如何使用梯子</h3><h3 id="注册一个Github账号"><a href="#注册一个Github账号" class="headerlink" title="注册一个Github账号"></a>注册一个Github账号</h3><h3 id="安装Node-js以及Git"><a href="#安装Node-js以及Git" class="headerlink" title="安装Node.js以及Git"></a>安装<a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a>以及<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></h3>
+            
         </div>
     </div>
-    <div id="vibrant">
-        <svg viewbox="0 0 2880 1620" height="100%" preserveaspectratio="xMaxYMax slice">
-            <polygon opacity="0.7" points="2000,1620 0,1620 0,0 600,0 "/>
-        </svg>
-        <div></div>
+    <div class="post-tags">
+        
+        
     </div>
-    <div id="header">
+    <a href="/2022/06/04/记录创建主页的过程/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/06/01/番剧记录/">
+        <h2>
+            浅记录我所看过的番
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories//">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                /
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/6/1
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <table>
+<thead>
+<tr>
+<th align="center">剧名</th>
+<th align="center">观剧时间</th>
+<th>相关图片</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">约会大作战</td>
+<td align="center">2021.12左右</td>
+<td><img src="/img/dal.jpg"></td>
+<td>高中的时候还挺喜欢这部番剧的，虽然大家都说某一季画崩了但是我还是很喜欢看，可能和看来很多原著加上是我的第一部真正意义上的番剧有关吧。相反现在第四季大家都很喜欢我反而提不起兴趣看了QWQ(或许是因为我有其他番可看趴)</td>
+</tr>
+<tr>
+<td align="center">青春猪头少年不会梦见兔女郎学姐</td>
+<td align="center">2021.12左右</td>
+<td><img src="/img/qingzhu.jpg"></td>
+<td>一部很不错的番，剧场版也很不错，麻衣学姐yyds！</td>
+</tr>
+<tr>
+<td align="center">中尔滨也要谈恋爱</td>
+<td align="center">2021.12</td>
+<td><img src="/img/th.jpg"></td>
+<td>很搞笑的一部番，不过我看来一大半就没有继续看了hhh</td>
+</tr>
+<tr>
+<td align="center">进击的巨人</td>
+<td align="center">2021.12、2022.1</td>
+<td><img src="/img/OIP.jpg"></td>
+<td>前几部可以当作热血番来看，相当爽快，到后面第三季开始加入了更多的思考，但剧情上仍然不错</td>
+</tr>
+<tr>
+<td align="center">更衣人偶坠入爱河</td>
+<td align="center">2022.2</td>
+<td><img src="/img/xdc.jpg"></td>
+<td>强推番剧！甜度爆表！期待动漫下一部(也会考虑看看漫画原作hh)</td>
+</tr>
+<tr>
+<td align="center">辉夜大小姐想让我告白</td>
+<td align="center">2022.3</td>
+<td><img src="/img/hy.jpg"></td>
+<td>设定上是智斗番?但当作一部恋爱搞笑番来看就行，入坑是因为室友在看当时乃至现在正在热播的第三季，于是乎光速补完前两季，虽然漫画彻底崩掉，但是不影响前面动画好看滴。除了辉夜白银之间的各种骚操作外，书记简直不要太好笑，早坂太戳我！</td>
+</tr>
+<tr>
+<td align="center">这个美术社大有问题</td>
+<td align="center">2022.5</td>
+<td><img src="/img/OIP1.jpg"></td>
+<td>十分轻松治愈的一部番，宇佐美瑞希我简直爱死，而且由于是6年前的老番了，B某那不需要大会员就可以看。遗憾的是至今没有第二季，可能以后也不会有了，好在漫画还是在更新的！</td>
+</tr>
+<tr>
+<td align="center">间谍过家家</td>
+<td align="center">2022.4</td>
+<td><img src="/img/OIP2.jpg"></td>
+<td>四月最火新番之一，轻松愉快，值得一看</td>
+</tr>
+<tr>
+<td align="center">擅长捉弄的高木同学</td>
+<td align="center">2022.5</td>
+<td><img src="/img/th1.jpg"></td>
+<td>第一季还没看完，暂时不多评价,不过yysy太太挺会的哦</td>
+</tr>
+<tr>
+<td align="center">86-不存在战区</td>
+<td align="center">2022.5</td>
+<td><img src="/img/leina.jpg"></td>
+<td>应该是我目前最喜欢的一部番了，而且它和我之前看过的番都不一样，计划单独出一篇，按下不表</td>
+</tr>
+<tr>
+<td align="center">缘某空</td>
+<td align="center"></td>
+<td></td>
+<td>我不是故意要看的…..</td>
+</tr>
+</tbody></table>
+<p>当然还有很多其他想看的番剧，持续更新ing~</p>
+<p>最新更新：2022-06-03</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/06/01/番剧记录/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/05/29/建立网页的原因/">
+        <h2>
+            建立个人主页的一些原因
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories//">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                /
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/29
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            <p>不久前，我花了几天时间追完了86(《86-不存在战区》或《86-不存在地域》)，突然发现上了大学以来似乎也看过不少的日漫了，加上看完86后内心有很强烈的空虚感，所以就突发奇想，试图建立一个属于我自己的地方，来记录我看过的作品，也会尝试写写自己的一些感受。除此之外当然也有其他考虑，比如把自己生活中的一些什么记录下来，以前的我并不在意这些，但是现在我试图去记录(发朋友圈什么的我是不可能干的，毕竟我只是试图留下一些自己的痕迹，仅为自己)。</p>
+<p>另外，感谢超佬Lyu-zhaojie的指导，建立这玩意儿多亏了ta(鄙人不甚擅长电脑操作，愧为计科人)</p>
+<p>还有就是吐槽一下刚选的theme，简直不要太难用，好端端的封面xjj给变成啥玩意儿了(悲)(xjj是86的女主蕾娜哦)</p>
+<p><img src="/img/leina.jpg"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/05/29/建立网页的原因/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+<div class="post">
+    <a href="/2022/05/29/关于我自己/">
+        <h2>
+            关于我自己
+        </h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories//">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                /
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/5/29
+        </span>
+    </div>
+    <div class="excerpt">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+    </div>
+    <a href="/2022/05/29/关于我自己/" class="go-post">
+        阅读全文
+    </a>
+</div>
+
+             
+<div class="page-current">
+    <div class="prev">
+        
+    </div>
+    <div class="page-index">
+        
+        <span class="current">
+            1
+        </span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+        </div>
+    </div>
+    
+    <div id="home-card">
+        <div id="card-div">
+    <div class="card-style" style="width: 300px">
+        <div class="avatar">
+            <img src=" " alt="avatar">
+        </div>
+        <div class="name">
+            John Doe
+        </div>
+        <div class="descriptions">
+            
+            <div class="description">
+                Description...
+            </div>
+            
+        </div>
+        <div class="icon-links">
+            
+        </div>
+        <div class="friend-links">
+            
+        </div>
+    </div>
+</div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
         <div>
-            <a class="image-logo" href="/"></a>
-			
-            <div class="iconfont icon-menu switchmenu"></div>
+            © 2022 - 2022 DeckNock
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @John Doe
         </div>
-    </div>
-    
-    <div id="post0">
-        <p>六月 01, 2022</p>
-        <h2><a href="/2022/06/01/%E7%95%AA%E5%89%A7%E8%AE%B0%E5%BD%95/" title="浅记录我所看过的番" class="posttitle">浅记录我所看过的番</a></h2>
-        <p class="summary">
-
-
-剧名
-观剧时间
-相关图片
-其他
-
-
-
-约会大作战
-2021.12左右
-
-高中的时候还挺喜欢这部番剧的，虽然大...</p>
-    </div>
-    
-</div>
-
-    <div id="primary">
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/korilin/hexo-theme-particle">Particle Theme</a></div>
         
-<div class="post">
-    <a href="/2022/05/29/%E5%85%B3%E4%BA%8E%E6%88%91%E8%87%AA%E5%B7%B1/" title="关于我自己">
-        <img src="/img/thumb-1920-1184239.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>五月 29, 2022</p>
-        <h3><a href="/2022/05/29/%E5%85%B3%E4%BA%8E%E6%88%91%E8%87%AA%E5%B7%B1/" title="关于我自己" class="posttitle">关于我自己</a></h3>
-        <p></p>
     </div>
-</div>
-
-
-<div class="post">
-    <a href="/2022/05/29/%E5%BB%BA%E7%AB%8B%E7%BD%91%E9%A1%B5%E7%9A%84%E5%8E%9F%E5%9B%A0/" title="建立个人主页的一些原因">
-        <img src="/img/thumb-1920-1140591.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>五月 29, 2022</p>
-        <h3><a href="/2022/05/29/%E5%BB%BA%E7%AB%8B%E7%BD%91%E9%A1%B5%E7%9A%84%E5%8E%9F%E5%9B%A0/" title="建立个人主页的一些原因" class="posttitle">建立个人主页的一些原因</a></h3>
-        <p>不久前，我花了几天时间追完了86(《86-不存在战区》或《86-不存在地域》)，突然发现上了大学以来似乎也看过不少的日漫了，加上看完86后内心有很强烈的空...</p>
-    </div>
-</div>
-
-
-    </div>
-    
-</div>
-<div id="preview"></div>
-
-
-
-</body>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
+</footer>
                     </div>
                 </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
             </div>
         </div>
-    </div>
-</div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
 
-
-
-
-
-
+    </body>
 </html>
