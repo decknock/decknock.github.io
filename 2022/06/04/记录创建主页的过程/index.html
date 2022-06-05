@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>记录创建主页的过程 | DeckNock</title>
+        <title>利用Hexo与Github构建一个个人主页 | DeckNock</title>
         <meta name="author" content="Decknock">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -120,7 +120,7 @@
                         
 <div class="article">
     <div>
-        <h1>记录创建主页的过程 </h1>
+        <h1>利用Hexo与Github构建一个个人主页 </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -142,7 +142,45 @@
         
     </div>
     <div class="content" v-pre>
-        <h1 id="借助Github构建自己的个人网站"><a href="#借助Github构建自己的个人网站" class="headerlink" title="借助Github构建自己的个人网站"></a><center>借助Github构建自己的个人网站</center></h1><h2 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h2><h3 id="建议熟悉如何使用梯子"><a href="#建议熟悉如何使用梯子" class="headerlink" title="建议熟悉如何使用梯子"></a>建议熟悉如何使用梯子</h3><h3 id="注册一个Github账号"><a href="#注册一个Github账号" class="headerlink" title="注册一个Github账号"></a>注册一个Github账号</h3><h3 id="安装Node-js以及Git"><a href="#安装Node-js以及Git" class="headerlink" title="安装Node.js以及Git"></a>安装<a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a>以及<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></h3>
+        <h2 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h2><h5 id="建议熟悉如何使用梯子"><a href="#建议熟悉如何使用梯子" class="headerlink" title="建议熟悉如何使用梯子"></a>建议熟悉如何使用梯子</h5><h5 id="注册一个Github账号，并新建一个名字与Github用户名相同的版本库"><a href="#注册一个Github账号，并新建一个名字与Github用户名相同的版本库" class="headerlink" title="注册一个Github账号，并新建一个名字与Github用户名相同的版本库"></a>注册一个Github账号，并新建一个名字与Github用户名相同的版本库</h5><h5 id="安装Node-js以及Git"><a href="#安装Node-js以及Git" class="headerlink" title="安装Node.js以及Git"></a>安装<a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a>以及<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></h5><span id="more"></span>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><h5 id="打开搜索框-一般在电脑左下角-搜索cmd并打开，输入以下句子"><a href="#打开搜索框-一般在电脑左下角-搜索cmd并打开，输入以下句子" class="headerlink" title="打开搜索框(一般在电脑左下角)搜索cmd并打开，输入以下句子"></a>打开搜索框(一般在电脑左下角)搜索cmd并打开，输入以下句子</h5><pre><code>npm install -g hexo-cli
+</code></pre>
+<h5 id="如果速度较慢可以切换为国内镜像，将上述nmp改为cnmp即可"><a href="#如果速度较慢可以切换为国内镜像，将上述nmp改为cnmp即可" class="headerlink" title="如果速度较慢可以切换为国内镜像，将上述nmp改为cnmp即可"></a>如果速度较慢可以切换为国内镜像，将上述nmp改为cnmp即可</h5><h2 id="初始化主页"><a href="#初始化主页" class="headerlink" title="初始化主页"></a>初始化主页</h2><h5 id="在一个合适的地方新建一个文件夹，在终端定位至该文件夹，输入："><a href="#在一个合适的地方新建一个文件夹，在终端定位至该文件夹，输入：" class="headerlink" title="在一个合适的地方新建一个文件夹，在终端定位至该文件夹，输入："></a>在一个合适的地方新建一个文件夹，在终端定位至该文件夹，输入：</h5><pre><code>hexo init
+</code></pre>
+<h5 id="具体：打开cmd，进入文件夹-以文件夹名称为Githubblog为例-，输入："><a href="#具体：打开cmd，进入文件夹-以文件夹名称为Githubblog为例-，输入：" class="headerlink" title="具体：打开cmd，进入文件夹(以文件夹名称为Githubblog为例)，输入："></a>具体：打开cmd，进入文件夹(以文件夹名称为Githubblog为例)，输入：</h5><pre><code>cd Githubblog
+</code></pre>
+<h5 id="注：GithubBlog的大多数实际地址类似-C-Users-32608-Documents-GithubBlog-这样的，那么我们需要逐级进入"><a href="#注：GithubBlog的大多数实际地址类似-C-Users-32608-Documents-GithubBlog-这样的，那么我们需要逐级进入" class="headerlink" title="注：GithubBlog的大多数实际地址类似 C:\Users\32608\Documents\GithubBlog 这样的，那么我们需要逐级进入"></a>注：GithubBlog的大多数实际地址类似 C:\Users\32608\Documents\GithubBlog 这样的，那么我们需要逐级进入</h5><h5 id="如果需要退回至上一级，则输入："><a href="#如果需要退回至上一级，则输入：" class="headerlink" title="如果需要退回至上一级，则输入："></a>如果需要退回至上一级，则输入：</h5><pre><code>cd ..
+</code></pre>
+<h5 id="安装完成以后，文件夹中将会多出若干文件"><a href="#安装完成以后，文件夹中将会多出若干文件" class="headerlink" title="安装完成以后，文件夹中将会多出若干文件"></a>安装完成以后，文件夹中将会多出若干文件</h5><h2 id="config-yml文件配置"><a href="#config-yml文件配置" class="headerlink" title="_config.yml文件配置"></a>_config.yml文件配置</h2><h5 id="完整文件配置详见Configuration-Hexo"><a href="#完整文件配置详见Configuration-Hexo" class="headerlink" title="完整文件配置详见Configuration|Hexo"></a>完整文件配置详见<a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration.html">Configuration|Hexo</a></h5><h5 id="主要文件配置："><a href="#主要文件配置：" class="headerlink" title="主要文件配置："></a>主要文件配置：</h5><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">title</td>
+<td align="center">网站标题</td>
+</tr>
+<tr>
+<td align="center">subtitle</td>
+<td align="center">副标题</td>
+</tr>
+<tr>
+<td align="center">language</td>
+<td align="center">语言，一般设置为 zh-CN</td>
+</tr>
+<tr>
+<td align="center">timezone</td>
+<td align="center">时区，可设置为 Asia&#x2F;Shanghai</td>
+</tr>
+<tr>
+<td align="center">url</td>
+<td align="center">网址，设置为 https:&#x2F;&#x2F;&lt;Github用户名&gt;.github.io (如 <a target="_blank" rel="noopener" href="https://ck.github.io/">https://CK.github.io</a> )</td>
+</tr>
+</tbody></table>
+<h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><h5 id="可以通过多款软件协助编辑，我使用的为vscode"><a href="#可以通过多款软件协助编辑，我使用的为vscode" class="headerlink" title="可以通过多款软件协助编辑，我使用的为vscode"></a>可以通过多款软件协助编辑，我使用的为vscode</h5><h5 id="假定您已经配置好了vscode"><a href="#假定您已经配置好了vscode" class="headerlink" title="假定您已经配置好了vscode"></a>假定您已经配置好了vscode</h5><h5 id="点击左上角文件，并选择打开文件夹，打开您之前新建的文件-比如GithubBlog-之后的显示类似如下："><a href="#点击左上角文件，并选择打开文件夹，打开您之前新建的文件-比如GithubBlog-之后的显示类似如下：" class="headerlink" title="点击左上角文件，并选择打开文件夹，打开您之前新建的文件(比如GithubBlog),之后的显示类似如下："></a>点击左上角文件，并选择打开文件夹，打开您之前新建的文件(比如GithubBlog),之后的显示类似如下：</h5><p><img src="/img/a2.jpg"></p>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
@@ -199,3 +237,8 @@
 
     </body>
 </html>
+<canvas
+    id="background"
+    style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"
+></canvas>
+<script src="/js/background.js"></script>
