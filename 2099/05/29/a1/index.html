@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Categories | DeckNock</title>
+        <title>一个摆烂怪 | DeckNock</title>
         <meta name="author" content="Decknock">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -117,14 +117,21 @@
 </nav>
                     </div>
                     <div id="main">
-                         
-<div class="categories-tags">
-    
-    <div class="all-s">
+                        
+<div class="article">
+    <div>
+        <h1>一个摆烂怪 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2099/5/29
+        </span>
         
-        
-        <span>
-            <a href="/categories/自我介绍/" style="background: #03a9f4">
+        <span class="category">
+            <a href="/categories/自我介绍">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
                 </span>
@@ -133,19 +140,18 @@
         </span>
         
         
-        <span>
-            <a href="/categories/Cpp/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                </span>
-                Cpp
-            </a>
-        </span>
-        
     </div>
-    <div id="archives">
-        
+    <div class="content" v-pre>
+        <h5 id="CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂"><a href="#CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂" class="headerlink" title="CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂"></a>CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂</h5><span id="more"></span>
+<h5 id="目前在P大养老，没有方向但试图找到意义"><a href="#目前在P大养老，没有方向但试图找到意义" class="headerlink" title="目前在P大养老，没有方向但试图找到意义"></a>目前在P大养老，没有方向但试图找到意义</h5><h5 id="19岁，事学生"><a href="#19岁，事学生" class="headerlink" title="19岁，事学生"></a>19岁，事学生</h5><h5 id="平时喜欢玩玩二游看看番，或者跟高中同学打打wzry"><a href="#平时喜欢玩玩二游看看番，或者跟高中同学打打wzry" class="headerlink" title="平时喜欢玩玩二游看看番，或者跟高中同学打打wzry"></a>平时喜欢玩玩二游看看番，或者跟高中同学打打wzry</h5><h5 id="深陷于C-的泥潭，惧怕可恶的Python"><a href="#深陷于C-的泥潭，惧怕可恶的Python" class="headerlink" title="深陷于C++的泥潭，惧怕可恶的Python"></a>深陷于C++的泥潭，惧怕可恶的Python</h5>
     </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
 </div>
                          
 <footer id="footer">
@@ -174,6 +180,24 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "32dfbc8d69fc140ee15e", clientSecret = "0853b1869138fff56cf50d37b6b1c43a68dc8df7";
+    
+    const gitalk = new Gitalk({
+        clientID: '32dfbc8d69fc140ee15e',
+        clientSecret: '0853b1869138fff56cf50d37b6b1c43a68dc8df7',
+        repo: "gitalk-comments",
+        owner: "codeofck",
+        admin: ["codeofck"],
+        language: "zh-CN",
+        id: location.pathname,
+        // distractionFreeMode: true
+        // createIssueManually: true
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
     </body>
 </html>

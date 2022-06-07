@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>一个摆烂怪 | DeckNock</title>
+        <title>C++习题记录 | DeckNock</title>
         <meta name="author" content="Decknock">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -120,30 +120,106 @@
                         
 <div class="article">
     <div>
-        <h1>一个摆烂怪 </h1>
+        <h1>C++习题记录 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/5/29
+            1919/8/10
         </span>
         
         <span class="category">
-            <a href="/categories/自我介绍">
+            <a href="/categories/Cpp">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
                 </span>
-                自我介绍
+                Cpp
             </a>
         </span>
         
         
     </div>
     <div class="content" v-pre>
-        <h5 id="CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂"><a href="#CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂" class="headerlink" title="CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂"></a>CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂</h5><span id="more"></span>
-<h5 id="目前在P大养老，没有方向但试图找到意义"><a href="#目前在P大养老，没有方向但试图找到意义" class="headerlink" title="目前在P大养老，没有方向但试图找到意义"></a>目前在P大养老，没有方向但试图找到意义</h5><h5 id="19岁，事学生"><a href="#19岁，事学生" class="headerlink" title="19岁，事学生"></a>19岁，事学生</h5><h5 id="平时喜欢玩玩二游看看番，或者跟高中同学打打wzry"><a href="#平时喜欢玩玩二游看看番，或者跟高中同学打打wzry" class="headerlink" title="平时喜欢玩玩二游看看番，或者跟高中同学打打wzry"></a>平时喜欢玩玩二游看看番，或者跟高中同学打打wzry</h5><h5 id="深陷于C-的泥潭，惧怕可恶的Python"><a href="#深陷于C-的泥潭，惧怕可恶的Python" class="headerlink" title="深陷于C++的泥潭，惧怕可恶的Python"></a>深陷于C++的泥潭，惧怕可恶的Python</h5>
+        <h5 id="记录C-算法部分的一些题目"><a href="#记录C-算法部分的一些题目" class="headerlink" title="记录C++算法部分的一些题目"></a>记录C++算法部分的一些题目</h5><span id="more"></span>
+<h5 id="1-神奇的口袋"><a href="#1-神奇的口袋" class="headerlink" title="1.神奇的口袋"></a>1.神奇的口袋</h5><h5 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h5><pre><code>有n个物体，体积为a1,a2,...,an,给定一个数字K,希望选出一部分物品总体积为K(以40为例),问总共有多少种选法
+</code></pre>
+<h5 id="解法一：递归"><a href="#解法一：递归" class="headerlink" title="解法一：递归"></a>解法一：递归</h5><pre><code class="cpp">#include&lt;iostream&gt;
+using namespace std;
+int a[30];int N;
+int Ways(int w,int k)&#123;
+    if(w==0) return 1;
+    if(k&lt;=0) return 0;
+    return Ways(w,k-1)+Ways(w-a[k],k-1);//无非是第k个选或者不选
+&#125;//代表从前K个中凑成w的方法数
+int main()&#123;
+    cin&gt;&gt;N;
+    for(int i=1;i&lt;=N;i++)&#123;
+        cin&gt;&gt;a[i];
+    &#125;
+    cout&lt;&lt;Ways(N,40);
+    return 0;
+&#125;
+</code></pre>
+<h5 id="解法二：动规"><a href="#解法二：动规" class="headerlink" title="解法二：动规"></a>解法二：动规</h5><pre><code class="cpp">#include&lt;iostream&gt;
+using namespace std;
+int main()&#123;
+    int a[30];
+    int N;
+    int Way[50][30];//Way[i][j]表示从前j个中选出和为i的种数
+    cin&gt;&gt;N;
+    memswt(Way,0,sizeof(Way));
+    for(int i=1;i&lt; =N;i++)&#123;
+        cin&gt;&gt;a[i];
+        Way[0][i]=1;//什么都不选属于一种方法
+    &#125;
+    Way[0][0]=1;
+    for(int i=1;i&lt; =40;i++)&#123;
+        for(int j=1;j&lt; =N;j++)&#123;
+            Way[i][j]=Way[i][j-1];
+            if(i-a[j]&gt; =0)&#123;
+                Way[i][j]+=Way[i-a[j]][j-1];
+            &#125;
+        &#125;
+    &#125;
+    cout&lt;&lt;Way[40][N];
+    return 0;
+&#125;
+</code></pre>
+<h5 id="2-0-1背包问题"><a href="#2-0-1背包问题" class="headerlink" title="2.0-1背包问题"></a>2.0-1背包问题</h5><h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><pre><code>有N个物品和一个体积为M的背包，第i个物品的体积和价值分别为w[i],d[i]，求解将哪些物品放入背包内可以使得价值之和最大
+N&lt;=3500,M&lt;=13000
+</code></pre>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><pre><code>首先仿造上一个题目，可以用一个二维数组来存放数据，F[i][j]表示从前i种物品中取出总体积不超过j的最优价值
+考虑边界情况
+如果 w[1]&gt;j,F[1][j]=0;如果 w[1]&lt;=j,F[1][j]=d[1];
+
+递推式：F[i][j]=max(F[i-1][j],F[i-1][j-w[i]]+d[i]),前题当然是j比w[i]大
+</code></pre>
+<h5 id="前面这两个题都要求你可以构造出这样一个数组Way-i-j-F-i-j-来存放数据"><a href="#前面这两个题都要求你可以构造出这样一个数组Way-i-j-F-i-j-来存放数据" class="headerlink" title="前面这两个题都要求你可以构造出这样一个数组Way[i][j],F[i][j]来存放数据"></a>前面这两个题都要求你可以构造出这样一个数组Way[i][j],F[i][j]来存放数据</h5><h5 id="优化思路："><a href="#优化思路：" class="headerlink" title="优化思路："></a>优化思路：</h5><pre><code>如果仅仅只有上面的思考，解决这样一道题是完全不够的，因为我们注意到，N&lt;=3500,M&lt;=13000
+这就意味着我们需要开辟一个3500x13000大小的二维数组来存放数据，显然不可能
+那么在某些情况下，可以使用滚动数组的方法来节省空间
+本题就是一个例子：
+在一开始的设想中，我们要通过第i-1行计算第i行
+由递推式不难发现 F[i][j]=max(F[i-1][j],F[i-1][j-w[i]]+d[i])，F[i][j]只与它上一行的相同位置，和上一行靠左的某一位置的元素有关
+它上一行右边是什么样的对它的值完全没有影响
+那么我们完全可以将F[i][j+1]存放在F[i-1][j+1]中,这样做有一个前提，那就是F[i][j]右边的数先于F[i][j]被填上
+确保右上方的数是完全“没用的”,所以要求我们从右往左循环，而不是从左往右
+这样最后我们只需要用一个一维数组就可以了(当然可以这么做也与此题只需要最后一行的结果息息相关，如果中间的数据是我们需要的，就不应该随意替换)
+</code></pre>
+<h5 id="代码暂略"><a href="#代码暂略" class="headerlink" title="代码暂略"></a>代码暂略</h5><h5 id="3-分蛋糕"><a href="#3-分蛋糕" class="headerlink" title="3.分蛋糕"></a>3.分蛋糕</h5><pre><code>有一个矩形大蛋糕，它的宽和高为整数w,h,现在要把它切成m块小蛋糕，要求：每次只能将一块蛋糕切成两块，每块蛋糕的宽和高都为整数
+要求计算出：最后m块小蛋糕中面积最大的那块蛋糕可能的最小面积
+</code></pre>
+<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><pre><code>有三个数据w,h,m，那么需要一个函数Way(w,h,m)来计算宽高为w,h,需要切m刀得到的一群蛋糕里面面积最大的可能具有的最小值
+记SV为先横着切一刀的情况，SH为先竖着切一刀的情况
+则way(w,h,m)=min(SV,SH)
+SH:
+竖着切一刀有w-1种切法
+记Si为左边一块宽为i的情况，Si=min&#123;max&#123;way(i,h,k),way(w-i,h,m-1-k)&#125;,k=0,1,...,m-1&#125;
+Si有左右两块蛋糕，且最终需要合切m-1刀
+SH=min&#123;Si&#125;
+</code></pre>
+<h5 id="理解递推式"><a href="#理解递推式" class="headerlink" title="理解递推式"></a>理解递推式</h5>
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
