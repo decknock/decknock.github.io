@@ -226,7 +226,7 @@ hexo deploy
 <script>
     var clientID = "32dfbc8d69fc140ee15e", clientSecret = "0853b1869138fff56cf50d37b6b1c43a68dc8df7";
     
-    var gitalk = new Gitalk({
+    const gitalk = new Gitalk({
         clientID: '32dfbc8d69fc140ee15e',
         clientSecret: '0853b1869138fff56cf50d37b6b1c43a68dc8df7',
         repo: "gitalk-comments",
@@ -234,7 +234,8 @@ hexo deploy
         admin: ["codeofck"],
         language: "zh-CN",
         id: location.pathname,
-        distractionFreeMode: true
+        // distractionFreeMode: true
+        // createIssueManually: true
     })
     gitalk.render("gitalk-container")
 </script>
