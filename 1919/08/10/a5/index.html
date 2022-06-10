@@ -261,7 +261,46 @@ int main()&#123;
     return 0;
 &#125;
 </code></pre>
-
+<h5 id="5-求最大公因数"><a href="#5-求最大公因数" class="headerlink" title="5.求最大公因数"></a>5.求最大公因数</h5><h5 id="记下辗转相除法的思想即可"><a href="#记下辗转相除法的思想即可" class="headerlink" title="记下辗转相除法的思想即可"></a>记下辗转相除法的思想即可</h5><pre><code class="cpp">#include&lt;iostream&gt;
+using namespace std;
+int dp(int a,int b)&#123;
+    if(b==0) return a;
+    int s=a%b;
+    if(b==s) return b;
+    else if(b&gt;s)&#123;
+        return dp(b,s);
+    &#125;
+    else&#123;
+        return dp(s,b);
+    &#125;
+&#125;//保证a&gt;b
+int main()&#123;
+    int a;
+    int b;
+    cin&gt;&gt;a&gt;&gt;b;
+    if(a&gt;b)&#123;
+        cout&lt;&lt;dp(a,b)&lt;&lt;endl;
+    &#125;
+    else if(a&lt;b)&#123;
+        cout&lt;&lt;dp(b,a)&lt;&lt;endl;
+    &#125;
+    else&#123;
+        cout&lt;&lt;a&lt;&lt;endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h5 id="求最大公约数可以使用辗转相除法："><a href="#求最大公约数可以使用辗转相除法：" class="headerlink" title="求最大公约数可以使用辗转相除法："></a>求最大公约数可以使用辗转相除法：</h5><pre><code>假设a &gt; b &gt; 0，那么a和b的最大公约数等于b和a%b的最大公约数，然后把b和a%b作为新一轮的输入。
+由于这个过程会一直递减，直到a%b等于0的时候，b的值就是所要求的最大公约数。
+比如：
+9和6的最大公约数等于6和9%6=3的最大公约数。
+由于6%3==0，所以最大公约数为3。
+</code></pre>
+<h5 id="6-完美覆盖"><a href="#6-完美覆盖" class="headerlink" title="6.完美覆盖"></a>6.完美覆盖</h5><p>描述<br>一张普通的国际象棋棋盘，它被分成 8 乘 8 (8 行 8 列) 的 64 个方格。设有形状一样的多米诺牌，每张牌恰好覆盖棋盘上相邻的两个方格，即一张多米诺牌是一张 1 行 2 列或者 2 行 1 列的牌。那么，是否能够把 32 张多米诺牌摆放到棋盘上，使得任何两张多米诺牌均不重叠，每张多米诺牌覆盖两个方格，并且棋盘上所有的方格都被覆盖住？我们把这样一种排列称为棋盘被多米诺牌完美覆盖。这是一个简单的排列问题，同学们能够很快构造出许多不同的完美覆盖。但是，计算不同的完美覆盖的总数就不是一件容易的事情了。不过，同学们 发挥自己的聪明才智，还是有可能做到的。<br>现在我们通过计算机编程对 3 乘 n 棋盘的不同的完美覆盖的总数进行计算。</p>
+<p><img src="/img/2663_1.jpg"></p>
+<p>任务<br>对 3 乘 n 棋盘的不同的完美覆盖的总数进行计算。<br>输入<br>一次输入可能包含多行，每一行分别给出不同的 n 值 ( 即 3 乘 n 棋盘的列数 )。当输入 -1 的时候结束。</p>
+<p>n 的值最大不超过 30.<br>输出<br>针对每一行的 n 值，输出 3 乘 n 棋盘的不同的完美覆盖的总数。<br>样例输入<br>2<br>8<br>12<br>-1<br>样例输出<br>3<br>153<br>2131</p>
+<h5 id="看上去有点小复杂"><a href="#看上去有点小复杂" class="headerlink" title="看上去有点小复杂"></a>看上去有点小复杂</h5>
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
