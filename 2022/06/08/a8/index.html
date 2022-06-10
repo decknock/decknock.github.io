@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/笔记" style="color: #00bcd4">
+                <a href="/tags/笔记" style="color: #ff7d73">
                     笔记
                 </a>
             </span>
@@ -147,7 +147,60 @@
         
     </div>
     <div class="content" v-pre>
-        <h5 id="Chapter-One"><a href="#Chapter-One" class="headerlink" title="Chapter One"></a>Chapter One</h5>
+        <h5 id="Chapter-One"><a href="#Chapter-One" class="headerlink" title="Chapter One"></a>Chapter One</h5><p>提到了NP完全问题：<br>对于NP完全问题，迄今为止未曾找到过对一个NP问题完全有效的算法，也没有人证明NP问题完全不存在有效算法<br>如果有任何一个NP问题具有有效算法，那么所有的NP问题都存在有效算法</p>
+<h5 id="Chapter-Two"><a href="#Chapter-Two" class="headerlink" title="Chapter Two"></a>Chapter Two</h5><p>2.1 插入排序</p>
+<pre><code>举一个例子，现在有一个序列 5 2 4 6 1 3
+从第二个数开始，保证左边的序列已经排好，依次将数插入到左边的序列
+step 1:左边的序列为 5 ，操作数为 2 ，此时2 应当排在5 前面，序列变为 2 5 4 6 1 3
+step 2:左边序列变成了2 5，操作数为 4，将4 插入在左序列中 得到 2 4 5 6 1 3
+step 3:2 4 5 6 1 3
+step 4:1 2 4 5 6 3
+step 5:1 2 3 4 5 6
+时间复杂度为O(n^2)
+</code></pre>
+<p>伪代码：</p>
+<pre><code>数组用A[1,...,n]表示
+
+for j=2 to A.length
+    key=A[j]//key就是我们此时要操作的数
+    i=j-1
+    while i&gt;0 and A[i]&gt;key
+        A[i+1]=A[i]
+        i=i-1
+    A[i+1]=key
+</code></pre>
+<p>Cpp简单代码：</p>
+<pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+void InsertSort(vector&lt;int&gt; &amp;a)&#123;
+    for(int i=1;i&lt;a.size();i++)&#123;
+        int j=i-1;
+        int key=a[i];
+        while(j&gt;=0&amp;&amp;a[j]&gt;key)&#123;
+            a[j+1]=a[j];//即把a[i]往后挪一格
+            j--;
+        &#125;
+        a[j+1]=key;
+    &#125;
+&#125;
+void Print(vector&lt;int&gt; a)&#123;
+    for(int i=0;i&lt;a.size();i++)&#123;
+        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;
+    &#125;
+    cout&lt;&lt;endl;
+&#125;
+int main()&#123;
+    int N;cin&gt;&gt;N;
+    vector&lt;int&gt; number(N,0);
+    for(int i=0;i&lt;N;i++)
+        cin&gt;&gt;number[i];
+    InsertSort(number);
+    Print(number);
+&#125;
+</code></pre>
+<p>InsertSort函数里面，其实更加直观的写法是找到应该插入的位置，然后从这个位置到最后都往后挪一格<br>但是往后挪一格在操作上可能会导致数组越界?(maybe<br>所以用交换更好</p>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
