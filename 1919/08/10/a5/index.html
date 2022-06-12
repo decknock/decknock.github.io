@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Cpp" style="color: #03a9f4">
+                <a href="/tags/Cpp" style="color: #ffa2c4">
                     Cpp
                 </a>
             </span>
@@ -300,7 +300,35 @@ int main()&#123;
 <p><img src="/img/2663_1.jpg"></p>
 <p>任务<br>对 3 乘 n 棋盘的不同的完美覆盖的总数进行计算。<br>输入<br>一次输入可能包含多行，每一行分别给出不同的 n 值 ( 即 3 乘 n 棋盘的列数 )。当输入 -1 的时候结束。</p>
 <p>n 的值最大不超过 30.<br>输出<br>针对每一行的 n 值，输出 3 乘 n 棋盘的不同的完美覆盖的总数。<br>样例输入<br>2<br>8<br>12<br>-1<br>样例输出<br>3<br>153<br>2131</p>
-<h5 id="看上去有点小复杂"><a href="#看上去有点小复杂" class="headerlink" title="看上去有点小复杂"></a>看上去有点小复杂</h5>
+<h5 id="看上去有点小复杂"><a href="#看上去有点小复杂" class="headerlink" title="看上去有点小复杂"></a>看上去有点小复杂</h5><h5 id="7-最大上升子序列和"><a href="#7-最大上升子序列和" class="headerlink" title="7.最大上升子序列和"></a>7.最大上升子序列和</h5><h5 id="是最长上升子序列的变式，一开始用递归可能超时了，后用动规，注意状态转移方程"><a href="#是最长上升子序列的变式，一开始用递归可能超时了，后用动规，注意状态转移方程" class="headerlink" title="是最长上升子序列的变式，一开始用递归可能超时了，后用动规，注意状态转移方程"></a>是最长上升子序列的变式，一开始用递归可能超时了，后用动规，注意状态转移方程</h5><pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+int N;
+int dp[1000]=&#123;0&#125;;//dp[i]代表从前i项中选的最大子序列和
+int main()&#123;
+    cin&gt;&gt;N;
+    vector&lt;int&gt; Number(N,0);
+    for(int i=0;i&lt;N;i++)&#123;
+        cin&gt;&gt;Number[i];
+    &#125;
+    dp[0]=Number[0];
+    for(int i=1;i&lt;N;i++)&#123;
+        dp[i]=Number[i];
+        for(int j=i-1;j&gt;=0;j--)&#123;
+            if(Number[j]&lt;Number[i])&#123;
+                dp[i]=max(dp[j]+Number[i],dp[i]);
+            &#125;
+        &#125;
+    &#125;
+    int M=0;
+    for(int i=0;i&lt;N;i++)&#123;
+        M=max(dp[i],M);
+    &#125;
+    cout&lt;&lt;M;
+    return 0;
+&#125;
+</code></pre>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
