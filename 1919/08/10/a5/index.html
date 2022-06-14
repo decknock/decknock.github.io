@@ -138,7 +138,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Cpp" style="color: #ff7d73">
+                <a href="/tags/Cpp" style="color: #00a596">
                     Cpp
                 </a>
             </span>
@@ -327,6 +327,146 @@ int main()&#123;
     cout&lt;&lt;M;
     return 0;
 &#125;
+</code></pre>
+<h5 id="7-迷宫问题"><a href="#7-迷宫问题" class="headerlink" title="7.迷宫问题"></a>7.迷宫问题</h5><pre><code>描述
+定义一个二维数组：
+
+int maze[5][5] = &#123;
+
+0, 1, 0, 0, 0,
+
+0, 1, 0, 1, 0,
+
+0, 0, 0, 0, 0,
+
+0, 1, 1, 1, 0,
+
+0, 0, 0, 1, 0,
+
+&#125;;
+
+它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。
+
+
+
+输入
+一个5 × 5的二维数组，表示一个迷宫。数据保证有唯一解。
+输出
+左上角到右下角的最短路径，格式如样例所示。
+样例输入
+0 1 0 0 0
+0 1 0 1 0
+0 0 0 0 0
+0 1 1 1 0
+0 0 0 1 0
+样例输出
+(0, 0)
+(1, 0)
+(2, 0)
+(2, 1)
+(2, 2)
+(2, 3)
+(2, 4)
+(3, 4)
+(4, 4)
+</code></pre>
+<p>解：</p>
+<pre><code class="cpp">#include&lt;iostream&gt;
+using namespace std;
+struct Node&#123;
+    int x;
+    int y;
+    Node()&#123;
+        x=0;
+        y=0;
+    &#125;
+    Node(int _x,int _y)&#123;
+        x=_x;
+        y=_y;
+    &#125;
+    friend ostream &amp;operator&lt;&lt;(ostream &amp;o,Node s)&#123;
+        o&lt;&lt;&quot;(&quot;&lt;&lt;s.x&lt;&lt;&quot;, &quot;&lt;&lt;s.y&lt;&lt;&quot;)&quot;;
+        return o;
+    &#125;
+&#125;;
+int dx[4]=&#123;1,0,-1,0&#125;;
+int dy[4]=&#123;0,-1,0,1&#125;;
+Node Path[25]&#123;&#125;;
+Node FinalPath[25]&#123;&#125;;
+int matrix[5][5]&#123;&#125;;
+bool WhetherGet[5][5]&#123;&#125;;//记录是否曾经经过这个点
+// int depth;
+int mindepth;
+bool WhetherInBoard(int x,int y)&#123;
+    if(x&gt;=0&amp;&amp;x&lt;=4&amp;&amp;y&gt;=0&amp;&amp;y&lt;=4) return true;
+    return false;
+&#125;
+void dfs(int i,int j,int depth)&#123;
+    if(i==4&amp;&amp;j==4)&#123;
+        Node c(i,j);
+        Path[depth]=c;
+        if(mindepth&gt;depth)&#123;
+            mindepth=depth;
+            for(int i=0;i&lt;=mindepth;i++)&#123;
+                FinalPath[i]=Path[i];
+            &#125;
+        &#125;
+        return;
+    &#125;
+    if(WhetherGet[i][j]==true)&#123;
+        return;
+    &#125;
+    WhetherGet[i][j]=true;//问题在于，有些点被标记成已走过，但是回溯的时候没有被修改回来
+    Node c1(i,j);
+    Path[depth]=c1;
+    // depth++;
+    for(int k=0;k&lt;4;k++)&#123;
+        if(WhetherGet[i+dx[k]][j+dy[k]]==false&amp;&amp;WhetherInBoard(i+dx[k],j+dy[k])==true&amp;&amp;matrix[i+dx[k]][j+dy[k]]==0)&#123;
+            dfs(i+dx[k],j+dy[k],depth+1);
+            WhetherGet[i][j]=false;//这个就是完成了回溯！重点理解
+        &#125;
+    &#125;
+    // depth--;
+    return;
+&#125;//表示从点i，j开始走到终点的最短路径
+int main()&#123;
+    // depth=0;
+    mindepth=25;
+    for(int i=0;i&lt;5;i++)&#123;
+        for(int j=0;j&lt;5;j++)&#123;
+            cin&gt;&gt;matrix[i][j];
+            WhetherGet[i][j]=false;
+        &#125;
+    &#125;
+    dfs(0,0,0);
+    for(int i=0;i&lt;=mindepth;i++)&#123;
+        cout&lt;&lt;FinalPath[i]&lt;&lt;endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h5 id="理解为什么回溯需要写一个whetherGet-i-j-x3D-false"><a href="#理解为什么回溯需要写一个whetherGet-i-j-x3D-false" class="headerlink" title="理解为什么回溯需要写一个whetherGet[i][j]&#x3D;false;"></a>理解为什么回溯需要写一个whetherGet[i][j]&#x3D;false;</h5><h5 id="8-棋盘问题"><a href="#8-棋盘问题" class="headerlink" title="8.棋盘问题"></a>8.棋盘问题</h5><pre><code>描述
+在一个给定形状的棋盘（形状可能是不规则的）上面摆放棋子，棋子没有区别。要求摆放时任意的两个棋子不能放在棋盘中的同一行或者同一列，请编程求解对于给定形状和大小的棋盘，摆放k个棋子的所有可行的摆放方案C。
+输入
+输入含有多组测试数据。
+每组数据的第一行是两个正整数，n k，用一个空格隔开，表示了将在一个n*n的矩阵内描述棋盘，以及摆放棋子的数目。 n &lt;= 8 , k &lt;= n
+当为-1 -1时表示输入结束。
+随后的n行描述了棋盘的形状：每行有n个字符，其中 # 表示棋盘区域， . 表示空白区域（数据保证不出现多余的空白行或者空白列）。
+输出
+对于每一组数据，给出一行输出，输出摆放的方案数目C （数据保证C&lt;2^31）。
+样例输入
+2 1
+#.
+.#
+4 4
+...#
+..#.
+.#..
+#...
+-1 -1
+样例输出
+2
+1
 </code></pre>
 
     </div>
