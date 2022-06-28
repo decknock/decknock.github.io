@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>一个摆烂怪 | DeckNock</title>
+        <title>C++习题记录2 | DeckNock</title>
         <meta name="author" content="Decknock">
         <meta name="description" content="">
         <meta name="keywords" content="">
@@ -120,14 +120,14 @@
                         
 <div class="article">
     <div>
-        <h1>一个摆烂怪 </h1>
+        <h1>C++习题记录2 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2099/5/29
+            1919/8/10
         </span>
         
         
@@ -138,8 +138,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/自我介绍" style="color: #00a596">
-                    自我介绍
+                <a href="/tags/Cpp" style="color: #00bcd4">
+                    Cpp
                 </a>
             </span>
             
@@ -147,8 +147,180 @@
         
     </div>
     <div class="content" v-pre>
-        <h5 id="CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂"><a href="#CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂" class="headerlink" title="CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂"></a>CK，出生在湖北省鄂州市，生日是7月25，没有特长，爱好是摆烂</h5><span id="more"></span>
-<h5 id="目前在P大养老，没有方向但试图找到意义"><a href="#目前在P大养老，没有方向但试图找到意义" class="headerlink" title="目前在P大养老，没有方向但试图找到意义"></a>目前在P大养老，没有方向但试图找到意义</h5><h5 id="19岁，事学生"><a href="#19岁，事学生" class="headerlink" title="19岁，事学生"></a>19岁，事学生</h5><h5 id="平时喜欢玩玩二游看看番，或者跟高中同学打打wzry"><a href="#平时喜欢玩玩二游看看番，或者跟高中同学打打wzry" class="headerlink" title="平时喜欢玩玩二游看看番，或者跟高中同学打打wzry"></a>平时喜欢玩玩二游看看番，或者跟高中同学打打wzry</h5><h5 id="深陷于C-的泥潭，惧怕可恶的Python"><a href="#深陷于C-的泥潭，惧怕可恶的Python" class="headerlink" title="深陷于C++的泥潭，惧怕可恶的Python"></a>深陷于C++的泥潭，惧怕可恶的Python</h5>
+        <p>好多题目都做不完…也不是很会，而且摆到考试之前了，只能研究研究答案了</p>
+<span id="more"></span>
+
+<ol>
+<li>计算字符串之间的距离</li>
+</ol>
+<p>题目：</p>
+<pre><code>对于两个不同的字符串，我们有一套操作方法来把他们变得相同，具体方法为：
+修改一个字符（如把“a”替换为“b”）
+删除一个字符（如把“traveling”变为“travelng”）
+
+比如对于“abcdefg”和“abcdef”两个字符串来说，我们认为可以通过增加/减少一个“g”的方式来达到目的。无论增加还是减少“g”，我们都仅仅需要一次操作。我们把这个操作所需要的次数定义为两个字符串的距离。
+给定任意两个字符串，写出一个算法来计算出他们的距离。
+输入
+第一行有一个整数n。表示测试数据的组数，
+接下来共n行，每行两个字符串，用空格隔开。表示要计算距离的两个字符串
+字符串长度不超过1000。
+输出
+针对每一组测试数据输出一个整数，值为两个字符串的距离。
+样例输入
+3
+abcdefg  abcdef
+ab ab
+mnklj jlknm
+样例输出
+1
+0
+4
+</code></pre>
+<p>答案1：</p>
+<pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+ 
+int m_min(int a, int b, int c)&#123;
+    if (a &lt;= b &amp;&amp; a &lt;= c)
+        return a;
+    else if (b &lt;= a &amp;&amp; b &lt;= c)
+        return b;
+    else
+        return c;
+        
+&#125;
+ 
+int count_distance(string a, string b)&#123;
+    int na = a.size();
+    int nb = b.size();
+    
+    // 分配二维数组
+    int **array = new int*[na + 1];
+    for (int i = 0; i &lt;= na; ++i)&#123;
+        array[i] = new int[nb + 1];
+    &#125;
+    
+    // 初始化二维数组的第一行和第一列 
+    for (int i = 0; i &lt;= nb; ++i)&#123;
+        array[0][i] = i;
+    &#125;
+     for (int i = 0; i &lt;= na; ++i)&#123;
+     	array[i][0] = i;
+     &#125;
+    
+    for (int i = 1; i &lt;= na; ++i)&#123;
+        for (int j = 1; j &lt;= nb; ++j)&#123;
+            if (a[i - 1] == b[j - 1])
+                array[i][j] = array[i-1][j-1];
+            else
+                array[i][j] = m_min(1 + array[i-1][j-1], 1 + array[i-1][j], 1 + array[i][j-1]);
+        &#125;
+    &#125;
+    
+    int m_distance = array[na][nb];
+    
+    // 释放二维数组 
+    for (int i = 0; i &lt;= na; ++i)&#123;
+        delete[] array[i];
+    &#125;
+    delete[] array;
+    
+    return m_distance;
+&#125;
+ 
+int main()&#123;
+    int n = 0;
+    string a, b;
+    cin &gt;&gt; n;
+    while(n--)&#123;
+        cin &gt;&gt; a &gt;&gt; b;
+        cout &lt;&lt; count_distance(a, b) &lt;&lt; endl;
+    &#125;
+&#125;
+</code></pre>
+<p>解释：<br>以题中的一个例子举例,a&#x3D;“jlknm”，b&#x3D;“mnklj”，则可构造一个6×6的二维数组array，并将二维数组的第一行和第一列初始化为如下，因为一个空字符串和任意一个字符串的距离始终为该字符串的长度。<br><img src="/img/w1.jpg"><br>用两层for循环遍历两个字符串a、b（i和j从1开始取值），对比每一个字符a[i-1]和b[j-1]，若两个字符相等，即a[i-1] &#x3D;&#x3D; b[j-1]，则不增加距离，因此对应的数组array[i][j]&#x3D;array[i-1][j-1]；若两个字符不相等，则可删除a[i-1]这个字符、删除b[j-1]这个字符，或修改a[i-1]使它与b[i-1]相等。array[i][j]取这三种方法的最小值。选择修改，则array[i][j] &#x3D; 1 + array[i-1][j-1]，若选择删除a[i-1]，则array[i][j] &#x3D; 1 + array[i-1][j]，若选择删除b[i-1]，则array[i][j] &#x3D; 1 + array[i][j-1]。运用这个方法，可将二维数组填满，如下图所示。<br><img src="/img/w2.jpg"></p>
+<p>即，对于两个字符串a,b ,考虑a的前i个组成的字符串与b的前j个组成的字符串之间的“距离”,这个数用array[i][j]来存<br>注意到前i个，那么此时是以a[i-1],b[j-1]结尾的，分两种情况，如果a[i-1]&#x3D;b[j-1],显然array[i][j]&#x3D;array[i-1][j-1]</p>
+<p>自己又写了一遍</p>
+<pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+using namespace std;
+int array1[1001][1001]&#123;&#125;;
+int MiniNumber(int x,int y,int z)&#123;
+    if(x&lt;=y&amp;&amp;x&lt;=z) return x;
+    if(y&lt;=x&amp;&amp;y&lt;=z) return y;
+    return z;
+&#125;
+int Distance(string s,string r)&#123;
+    int s1=s.size();
+    int r1=r.size();
+
+    for(int i=1;i&lt;=s1;i++)&#123;
+        for(int j=1;j&lt;=r1;j++)&#123;
+            if(array1[i][j]!=0) continue;
+            if(s[i-1]==r[j-1]) array1[i][j]=array1[i-1][j-1];
+            else array1[i][j]=MiniNumber(1+array1[i-1][j-1],1+array1[i-1][j],1+array1[i][j-1]);
+        &#125;
+    &#125;
+
+    int ans=array1[s1][r1];
+    return ans;
+&#125;
+int main()&#123;
+    string a;string b;
+    int T;
+    cin&gt;&gt;T;
+    while(T--)&#123;
+        cin&gt;&gt;a&gt;&gt;b;
+        memset(array1,0,sizeof(array1));
+        array1[0][0]=0;
+        for(int i=1;i&lt;=a.size();i++)&#123;
+            array1[i][0]=i;
+        &#125;
+        for(int i=1;i&lt;=b.size();i++)&#123;
+            array1[0][i]=i;
+        &#125;
+
+        int Ans=Distance(a,b);
+        cout&lt;&lt;Ans&lt;&lt;endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<ol start="2">
+<li>波兰表达式<br>&#96;&#96;&#96;<br>描述<br>波兰表达式是一种把运算符前置的算术表达式，例如普通的表达式2 + 3的波兰表示法为+ 2 3。波兰表达式的优点是运算符之间不必有优先级关系，也不必用括号改变运算次序，例如(2 + 3) * 4的波兰表示法为* + 2 3 4。本题求解波兰表达式的值，其中运算符包括+ - * &#x2F;四个。</li>
+</ol>
+<p>输入<br>输入为一行，其中运算符和运算数之间都用空格分隔，运算数是浮点数。<br>输出<br>输出为一行，表达式的值。<br>可直接用printf(“%f\n”, v)输出表达式的值v。<br>样例输入</p>
+<ul>
+<li><ul>
+<li>11.0 12.0 + 24.0 35.0<br>样例输出<br>1357.000000<br>提示<br>可使用atof(str)把字符串转换为一个double类型的浮点数。atof定义在math.h中。<br>此题可使用函数递归调用的方法求解。<br>&#96;&#96;&#96;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;cmath&gt;
+#include&lt;iomanip&gt;
+using namespace std;
+double Fix()&#123;
+    char s[100];
+    cin&gt;&gt;s;
+    switch (s[0])
+    &#123;
+        case &#39;+&#39;:return Fix()+Fix();
+        case &#39;-&#39;:return Fix()-Fix();
+        case &#39;*&#39;:return Fix()*Fix();
+        case &#39;/&#39;:return Fix()/Fix();
+    &#125;
+    return atof(s);
+&#125;
+int main()&#123;
+    double ans=Fix();
+    cout&lt;&lt;fixed&lt;&lt;setprecision(6)&lt;&lt;ans&lt;&lt;endl;
+&#125;
+</code></pre>
+<p>递归的方法真的很巧妙</p>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
